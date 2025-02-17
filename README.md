@@ -18,7 +18,7 @@ sudo useradd -m -G developers dev3
 sudo useradd -m -G developers dev4
 sudo useradd -m -G developers dev5
 ```
-![Developer group](/linux_assessment/verifying_user_in_group.png)
+![Developer group](./linux_assessment/verifying_user_in_group.png)
 
 **I then set passwords for each user**
 
@@ -46,7 +46,7 @@ sudo chown -R root:developers /var/www/project
 sudo chmod -R 750 /var/www/project
 ls -ld /var/www/project
 ```
-![verify permissions](/linux_assessment/verify_permissions.png)
+![verify permissions](./linux_assessment/verify_permissions.png)
 #### ✅  **Task**: Restrict SSH Access for **`dev4`** & **`dev5`**
 
 i edited the SSH configuration file
