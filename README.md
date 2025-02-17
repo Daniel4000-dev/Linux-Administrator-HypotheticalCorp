@@ -103,21 +103,20 @@ I identified the top resource-consuming process with
 ```bash
 top
 ```
+![memory](./linux_assessment//memory.png)
+
 i checked the disk usage with
 ```bash
 df -h
 du -sh /var/log/*
 ```
+![disk_space](./linux_assessment/disk_space.png)
+
 I monitored real-time logs with
 ```bash
 sudo journalctl -f
 ```
-**Issue encountered & Solution:**
-no particular issue, but i tried to clear old logs to free up more space by running:
-```bash
-sudo rm -rf /var/log/*.gz
-sudo journalctl --vacuum-time=3d
-```
+![real time monitoring](./linux_assessment//real_time_monitoring_to_detect_anomalies.png)
 
 ## **3️⃣ Application Management**
 ### **Task:** Install and configure Nginx
@@ -133,6 +132,7 @@ verified that Nginx was running:
 ```bash
 sudo systemctl status nginx
 ```
+![verify nginx is enabled to start on boot](./linux_assessment//verifying_ngnix_is_enabled_to_start_on_boot.png)
 ---
 
 ## **4️⃣ Networking and Security**
