@@ -1,7 +1,7 @@
 # Linux Administrator - HypotheticalCorp
 
 ## **Scenario**
-You are a linux Administrator at HypotheticalCorp. Your tasks include managing users, ensuring security, monitoring system performance, and handling application depolyments.
+You are the Linux Administrator at HypotheticalCorp, a growing tech company that provides cloud-based services to clients. Your responsibilities include managing user access, ensuring system security, monitoring system performance, and handling application deployments.
 
 ---
 
@@ -32,10 +32,10 @@ sudo passwd dev5
 
 **Issue Encountered & Solution:**
 - Just creating the users was not enough for the SSH access.
-- I had to configure SSH authentication (which i will soon get to)
+-I had to configure SSH authentication (which i will soon get to)
 
 ---
-#### ✅ **Task**: Set Permission for **`/var/www/project`** 
+#### ✅ **Task**: Ensure they have **read and execute** permissions for **`/var/www/project`** 
 
 I created a project directory and set the correct permissions
 
@@ -47,7 +47,7 @@ sudo chmod -R 750 /var/www/project
 ls -ld /var/www/project
 ```
 ![verify permissions](./linux_assessment/verify_permissions.png)
-#### ✅  **Task**: Restrict SSH Access for **`dev4`** & **`dev5`**
+#### ✅  **Task**: Restrict **SSH Access** for **`dev4`** & **`dev5`**
 
 i edited the SSH configuration file
 ```bash
@@ -71,7 +71,7 @@ sudo mkdir -p /home/dev1/.ssh
 sudo mkdir -p /home/dev2/.ssh
 sudo mkdir -p /home/dev3/.ssh
 ```
-- I copied the authorized key from the admin and used it to give the allowed devs verified access.
+I copied the authorized key from the admin and used it to give the allowed devs verified access.
 ```bash
 cat ~/.ssh/authorized_keys
 echo "copied-authorized-key" | sudo tee -a /home/dev1/.ssh/authorized_keys
@@ -97,13 +97,17 @@ ssh dev4@my-ece-public-ip
 
 ## **2️⃣ System Monitoring & Performance Analysis**
 
-### **Task:** Identify top resource-consuming processes.
+### ✅ **Task:** Identify the **top resource-consuming processes** and determine if it is necessary.
 
 I identified the top resource-consuming process with
 ```bash
 top
 ```
 ![memory](./linux_assessment//memory.png)
+
+i don't neccessarily have any process consumin resource running
+
+### ✅ **Task:** Check the **disk usage* to ensure logs are not consuming too much space.
 
 i checked the disk usage with
 ```bash
@@ -112,6 +116,8 @@ du -sh /var/log/*
 ```
 ![disk_space](./linux_assessment/disk_space.png)
 
+### ✅ **Task:** Monitor **real-time system logs** to detect anomalies.
+
 I monitored real-time logs with
 ```bash
 sudo journalctl -f
@@ -119,7 +125,7 @@ sudo journalctl -f
 ![real time monitoring](./linux_assessment//real_time_monitoring_to_detect_anomalies.png)
 
 ## **3️⃣ Application Management**
-### **Task:** Install and configure Nginx
+### ✅ **Task:** Install and setup Nginx to start **automatically on boot.**
 
 i installed and started Nginx with the following command
 ```bash
@@ -128,15 +134,23 @@ sudo apt install nginx -y
 sudo systemctl enable nginx
 sudo systemctl start nginx
 ```
+### ✅ **Task:** A check go ensure Nginx is **running properly** after installation
+
 verified that Nginx was running:
 ```bash
 sudo systemctl status nginx
 ```
 ![verify nginx is enabled to start on boot](./linux_assessment//verifying_ngnix_is_enabled_to_start_on_boot.png)
+
+### ✅ **Task:** The ability for Nginx to restart if it crashes
+
+```bash
+sudo systemctl restart nginx
+```
 ---
 
 ## **4️⃣ Networking and Security**
-### **Task:** Restrict SSH access for `dev4` and `dev5`, allowing only local logins.
+### ✅ **Task:** Blocking all **incoming traffic** except SSH and HTTP
 
 ```bash
 sudo ufw default deny incoming
@@ -145,11 +159,17 @@ sudo ufw allow 80/tcp
 sudo ufw enable
 sudo ufw status
 ```
+![ubuntu firewall](./linux_assessment/ubuntu_firewall.png)
+
+### ✅ **Task:** Checking which ** ports are currently open on the system.
+
 i checked the open ports using
 ```bash
 sudo ss -tulnp
 ```
+![check open ports](./linux_assessment//check_open_ports.png)
 ### **Task:** Set up SSH key-based authentication to eliminate password logins.
+
 I generated a new SSH Key
 ```bash
 ssh-keygen -t rsa -b 4096 -f ~/.ssh/dev-key
