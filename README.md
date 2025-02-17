@@ -7,7 +7,8 @@ You are a linux Administrator at HypotheticalCorp. Your tasks include managing u
 
 ## **1️⃣ User and Roles Management**
 ### ✅  **Task**: Create Users and Assign Them to the `developers` Group
-I created **five developers (`dev1` to `dev5`)** and added them to a group.
+
+**I created **five developers (`dev1` to `dev5`)** and added them to a group.**
 
 #### **Commands Used**
 ```bash
@@ -17,7 +18,9 @@ sudo useradd -m -G developers dev3
 sudo useradd -m -G developers dev4
 sudo useradd -m -G developers dev5
 ```
-I then set passwords for each user
+![Developer group](/linux_assessment/verifying_user_in_group.png)
+
+**I then set passwords for each user**
 
 ```bash
 sudo passwd dev1
@@ -26,6 +29,7 @@ sudo passwd dev3
 sudo passwd dev4
 sudo passwd dev5
 ```
+
 **Issue Encountered & Solution:**
 - Just creating the users was not enough for the SSH access.
 - I had to configure SSH authentication (which i will soon get to)
@@ -42,6 +46,7 @@ sudo chown -R root:developers /var/www/project
 sudo chmod -R 750 /var/www/project
 ls -ld /var/www/project
 ```
+![verify permissions](/linux_assessment/verify_permissions.png)
 #### ✅  **Task**: Restrict SSH Access for **`dev4`** & **`dev5`**
 
 i edited the SSH configuration file
